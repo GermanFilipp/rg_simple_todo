@@ -12,5 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require angular
+//= require angular-route
+//= require angular-resource
+//= require angular-rails-templates
+//= require angular-editable-text
+//= require angular-ui-sortable
+//= require angular-devise/lib/devise
+//= require ng-file-upload
+//= require ng-file-upload-shim
+//= require ngDialog
+//= require bootstrap-sprockets
+//= require angular-ui-date/src/date
+//= require ui-bootstrap-custom-0.13.3.min.js
+//= require ui-bootstrap-custom-tpls-0.13.3.min.js
+//= require_tree ./templates
 //= require turbolinks
+
 //= require_tree .

@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+  project:
+    error_save: "Project has not been saved"
+    error_update: "Project has not been updated"
+  task_list:
+     error_save: "Task has not been saved"
+     error_update: "Task has not been updated"
+  comment:
+     error_save: "Comment has not been saved"
+     error_update: "Comment has not been updated"

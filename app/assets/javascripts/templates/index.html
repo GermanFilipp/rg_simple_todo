@@ -1,0 +1,89 @@
+<div class="container" ng-controller="ProjectsController">
+
+
+
+
+    <div ng-repeat="project in projects">
+        <h3>Project #{{project.id}}</h3>
+        <span editable-text="project.name" on-change="updateProject(value, project.id)"></span>
+        <button type="button" class="btn btn-primary" ng-click="deleteProject(project.id, $index)">delete</button>
+
+        <div ng-controller="TasksController">
+
+            <div class="row">
+                <div class="col-xs-2">
+                    <input type="text" class="form-control" ng-model="taskName">
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="createTask(project.id)">Add Task</button>
+            </div>
+
+            <div ng-repeat="task in project.tasks">
+                <input type="checkbox" id="task_status" ng-checked="task.status == true" ng-click="updateStatus(task.id, task.status, $index)">
+               <span ng-class="{'done': task.status == true}"  editable-text="task.title" on-change="updateTask(value, task.id)"></span>
+                <span> deadline: {{task.deadline|date:"dd.MM"}}</span>
+                <input class='glyphicon glyphicon-time button-ok' ng-change='setDeadline(task.id, task)' ng-model='task.deadline' type='button' ui-date-format='yy-mm-dd' ui-date='dateOptions'>
+
+                <button type="button" class="btn btn-primary" ng-click="deleteTask(task.id, $index)">delete</button>
+
+
+
+            <div ng-controller="CommentsController">
+
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control" ng-model="commentName">
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-click="createComment(task.id)">Add Comment</button>
+                </div>
+
+
+                <div ng-repeat="comment in task.comments">
+                    <span editable-text="comment.text" on-change="updateComment(value, comment.id)"></span>
+                    <button type="button" class="btn btn-primary" ng-click="deleteComment(comment.id, $index)">delete</button>
+
+
+                    <div ng-repeat="files in comment.file_attachments">
+                        <a target="_blank" ng-href="{{files.file_url}}">
+                            {{ files.file_identifier }}
+                        </a>
+                    </div>
+
+                    <div ng-controller="UploadController">
+                        <button class="btn btn-success btn-s button_upload" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB">
+                            Attach Files
+                        </button>
+                        <ul>
+                            <li ng-repeat="f in files">{{f.name}} {{f.$error}} {{f.$errorParam}}
+                      <span class="progress" ng-show="f.progress >= 0">
+                        <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
+                      </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-xs-2">
+            <input type="text" class="form-control" ng-model="nameProject">
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="createProject()">Add Project</button>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,35 @@
+{
+  "name": "todo_list",
+  "version": "0.0.0",
+  "homepage": "https://github.com/GermanFilipp/rg_simple_todo",
+  "authors": [
+    "GermanFilipp <ger772@yandex.ru>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "bootstrap-sass-official": null,
+    "angular-route": null,
+    "angular-resource": null,
+    "angular-xeditable ": null,
+    "angular-ui-sortable ": null,
+    "jquery-ui ": null,
+    "angular-tooltips": null,
+    "angular-devise": null,
+    "angular-mocks": null,
+    "sinon": null,
+    "jasmine-sinon": null,
+    "ng-file-upload-shim": null,
+    "ng-file-upload": null,
+    "ngDialog": null,
+    "angular-editable-text": null,
+    "angular-ui-date": null
+  }
+}
