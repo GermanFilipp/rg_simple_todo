@@ -1,0 +1,44 @@
+<div class='todo-list'>
+
+    <div class='todo-head'>
+        <div class='icon-left'>
+            <span class='glyphicon glyphicon-calendar'></span>
+        </div>
+        <div class='todo-list-name'>
+            <span editable-text="project.name" on-change="updateProject(value, project.id)"></span>
+        </div>
+
+        <div class='icon-right' >
+            <a class='glyphicon glyphicon-trash' ng-click='deleteProject(project.id, $index)'></a>
+        </div>
+    </div>
+
+
+
+    <div class='todo-form' ng-controller='TasksController'>
+        <div class='icon-left icon-plus'>
+            <span class='glyphicon glyphicon-plus'></span>
+        </div>
+        <form name="nameOfTask" ng-submit="createTask(project.id,nameOfTask.$valid)" novalidate>
+            <div class='formGroup'>
+                <div class='input-group'>
+                    <input class='form-control' name="name" ng-model="taskName" placeholder="Enter task name" required>
+                    <div class='input-group-addon'>
+                        <input  class='add-button' type='submit' value='Add Task'>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div ng-controller='TasksController'>
+        <ul class='todo-content'  ui-sortable="sortableOptions" ng-model="project.tasks">
+            <li class='li-task'  ng-include='"layouts/task.html"' ng-repeat='task in project.tasks'></li>
+        </ul>
+    </div>
+</div>
+
+
+

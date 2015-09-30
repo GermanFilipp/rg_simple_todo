@@ -17,14 +17,15 @@ gem 'cloudinary'
 gem 'bower-rails'
 gem 'active_model_serializers'
 gem 'angular-rails-templates'
-
+gem 'capybara'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
+gem 'poltergeist'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'capybara'
+
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'

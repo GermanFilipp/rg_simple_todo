@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :projects
 
   validates :email, presence: true,uniqueness: { case_sensitive: false }
-  validates :name, presence: true
+  #validates :name, presence: true
 
 
   def self.from_omniauth(auth)

@@ -1,0 +1,29 @@
+
+<div class="alert_error" style="height:30px; width: 500px; margin: auto;"></div>
+<div class="login-box" ng-controller="SignInController">
+
+    <div class="lb-header">
+        <a href="/#/login"  id="login-box-link">Login</a>
+        <a href="/#/register" class="active" id="signup-box-link">Sign Up</a>
+    </div>
+    <div class="social-login">
+        <a href="#">
+            <i class="fa fa-facebook fa-lg"></i>
+            Login in with facebook
+        </a>
+    </div>
+    <form class="email-signup ">
+        <div class="u-form-group">
+            <input type="email" name="user[email]" ng-model="user.email" placeholder="Email"/>
+        </div>
+        <div class="u-form-group">
+            <input type="password" name="user[password]" ng-model="user.password" autocomplete="off" placeholder="Password"/>
+        </div>
+        <div class="u-form-group">
+            <input type="password" placeholder="Confirm Password"/>
+        </div>
+        <div class="u-form-group">
+            <button ng-click="register(user)">Sign Up</button>
+        </div>
+    </form>
+</div>

@@ -7,13 +7,14 @@ controllers.controller 'CommentsController', [
   'Comments'
   'Comment'
   ($scope,$http,Comments,Comment) ->
-    $scope.createComment = (task_id) ->
-      Comments.create {
-          task_id: task_id
-          text: $scope.commentName
-        }, (res) ->
-        $scope.commentName = ''
-        $scope.task.comments.push res.comment
+    $scope.createComment = (task_id,isValid) ->
+      if isValid
+        Comments.create {
+            task_id: task_id
+            text: $scope.commentName
+          }, (res) ->
+          $scope.commentName = ''
+          $scope.task.comments.push res.comment
 
     $scope.deleteComment = (id,key) ->
       Comment.destroy {id:id}, (res) ->

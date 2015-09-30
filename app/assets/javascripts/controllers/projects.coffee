@@ -5,16 +5,24 @@ controllers.controller 'ProjectsController', [
   '$http'
   'Projects'
   'Project'
-  ($scope, $http, Projects,Project) ->
+  'CheckLogin'
+  '$timeout'
+  ($scope, $http, Projects,Project,CheckLogin,$timeout) ->
+    $timeout(->
+      CheckLogin()
+      200)
 
     Projects.get (response) ->
       $scope.projects = response.projects
       console.log($scope)
 
-    $scope.createProject = ->
-      Projects.create { name: $scope.nameProject }, (res) ->
-        $scope.nameProject = ''
-        $scope.projects.push res.project
+    $scope.createProject = (isValid)->
+      if isValid
+        Projects.create { name: $scope.nameProject}, (res) ->
+              $scope.projects.push res.project
+              $scope.nameProject = ''
+              $scope.showForm = false
+
 
     $scope.deleteProject = (id,key) ->
       Project.destroy { id: id }, ->
@@ -24,5 +32,6 @@ controllers.controller 'ProjectsController', [
       Project.update {id: id, name: value }, ->
       return value
 
+    $scope.showForm = false
 ]
 

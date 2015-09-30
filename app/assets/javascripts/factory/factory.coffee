@@ -78,3 +78,12 @@ todo_list.factory 'Comment', [
           text: '@text'
 
 ]
+
+todo_list.factory 'CheckLogin', [
+  'Auth'
+  '$location'
+  (Auth, $location) ->
+    ->
+      if !Auth.isAuthenticated()
+        $location.path '/login'
+]

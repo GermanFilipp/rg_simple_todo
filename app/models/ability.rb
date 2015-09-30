@@ -9,8 +9,10 @@ class Ability
          can :manage, Task,           project: {user_id: user.id}
          can :manage, Comment,        task:    {project: {user_id: user.id}}
          can :manage, FileAttachment, comment: {task: {project: {user_id: user.id}}}
+=begin
        else
          can :manage, :all
+=end
 
        end
   end

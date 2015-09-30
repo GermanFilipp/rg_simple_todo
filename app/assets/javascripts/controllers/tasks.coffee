@@ -4,15 +4,17 @@ controllers.controller 'TasksController', [
   '$scope'
   '$http'
   'Tasks'
+  'orderByFilter'
   'Task'
-  ($scope,$http,Tasks,Task) ->
-    $scope.createTask = (project_id) ->
-      Tasks.create {
-          project_id: project_id
-          title: $scope.taskName
-        }, (res) ->
-        $scope.taskName = ''
-        $scope.project.tasks.push res.task
+  ($scope,$http,Tasks,orderByFilter,Task) ->
+    $scope.createTask = (project_id,isValid) ->
+      if isValid
+        Tasks.create {
+            project_id: project_id
+            title: $scope.taskName
+          }, (res) ->
+          $scope.taskName = ''
+          $scope.project.tasks.push res.task
 
 
     $scope.deleteTask = (id,key) ->
@@ -33,9 +35,19 @@ controllers.controller 'TasksController', [
 
     $scope.dateOptions =
       showOn: 'button',
-      buttonText: 'hello'
+      buttonText: ''
 
+    $scope.sortableOptions = stop: (e, ui) ->
+      angular.forEach $scope.project.tasks, (value, key) ->
+        Task.update
+          id: value.id
+          position: key
 
+    angular.forEach $scope.projects, (value, key) ->
+      $scope.$watchCollection value, ->
+      $scope.projects[key].tasks = orderByFilter($scope.projects[key].tasks, [ 'position' ])
+
+    $scope.showComments = false;
 
 ]
 
