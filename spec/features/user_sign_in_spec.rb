@@ -1,4 +1,4 @@
-feature 'the signin process', js: true do
+feature 'the sign in process', js: true do
   given(:user) { FactoryGirl.create(:user) }
   before { visit '/#/login' }
 
@@ -7,7 +7,7 @@ feature 'the signin process', js: true do
   end
 
   scenario 'user sign in' do
-    within(".simple-form") do
+    within(".email-login") do
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: user.password
     end
@@ -16,7 +16,7 @@ feature 'the signin process', js: true do
   end
 
   scenario 'user sign in with invalid email' do
-    within(".simple-form") do
+    within(".email-login") do
       fill_in 'user[email]', with: 'invalid@gmail.com'
       fill_in 'user[password]', with: user.password
     end
@@ -28,6 +28,6 @@ feature 'the signin process', js: true do
     login_as user, scope: :user
     visit '/#/login'
     expect(page).not_to have_button('Log in')
-    expect(page).to have_content('SIMPLE TODO LIST')
+    expect(page).to have_content('Add TODO List')
   end
 end

@@ -5,11 +5,11 @@
             <span class='glyphicon glyphicon-calendar'></span>
         </div>
         <div class='todo-list-name'>
-            <span editable-text="project.name" on-change="updateProject(value, project.id)"></span>
+            <span editable-text="project.name" id="project_change_name"  on-change="updateProject(value, project.id)"></span>
         </div>
 
         <div class='icon-right' >
-            <a class='glyphicon glyphicon-trash' ng-click='deleteProject(project.id, $index)'></a>
+            <a class='glyphicon glyphicon-trash' id="remove_project" ng-click='deleteProject(project.id, $index)'></a>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
         <div class='icon-left icon-plus'>
             <span class='glyphicon glyphicon-plus'></span>
         </div>
-        <form name="nameOfTask" ng-submit="createTask(project.id,nameOfTask.$valid)" novalidate>
+        <form name="nameOfTask" ng-submit="createTask(project.id,nameOfTask.$valid)" >
             <div class='formGroup'>
                 <div class='input-group'>
                     <input class='form-control' name="name" ng-model="taskName" placeholder="Enter task name" required>

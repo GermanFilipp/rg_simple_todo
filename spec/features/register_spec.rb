@@ -4,16 +4,16 @@ feature 'the register process', js: true do
   before { visit '/#/register' }
 
   scenario 'user navigates to register pages' do
-    expect(page).to have_button('Register')
+    expect(page).to have_content('SIGN UP')
   end
 
   scenario 'user register' do
-    within(".register-form") do
+    within(".email-signup") do
       fill_in 'user[email]', with: 'newemail@gmail.com'
       fill_in 'user[password]', with: user.password
       fill_in 'user[confirm_password]', with: user.password
     end
-    click_button 'Register'
+    click_button 'Sign Up'
     expect(page).to have_content('SIMPLE TODO LIST')
   end
 

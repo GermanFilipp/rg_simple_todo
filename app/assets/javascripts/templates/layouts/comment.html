@@ -1,6 +1,6 @@
 <div>
     <div ng-controller="UploadController">
-    <span editable-text="comment.text" on-change="updateComment(value, comment.id)"></span>
+    <span editable-text="comment.text" id="change_comment_name" name="comment_name[name]" on-change="updateComment(value, comment.id)"></span>
 
     <a class='glyphicon glyphicon-trash delete-comment' ng-click="deleteComment(comment.id, $index)"></a>
         <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB">
@@ -17,7 +17,7 @@
 
 
     <div ng-repeat="files in comment.file_attachments">
-        <a class='glyphicon glyphicon-cloud-download' target="_blank" ng-href="{{files.file_url}}">
+        <a class='glyphicon glyphicon-cloud-download' it="file_attach" target="_blank" ng-href="{{files.file_url}}">
             {{ files.file_identifier }}
         </a>
     </div>

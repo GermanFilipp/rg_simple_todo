@@ -1,4 +1,6 @@
 feature 'project', js: true do
+
+
   given(:user) { FactoryGirl.create(:user) }
   given!(:project) { FactoryGirl.create(:project, user: user, name: 'test project') }
 
@@ -8,33 +10,22 @@ feature 'project', js: true do
   end
 
   scenario 'user press \'Add Todo\' button and create new project' do
-    find('.todo_button').click
-    find('#new_project').set 'test project'
-    click_button 'Add project'
+    find('.add-todo-list').click
+    find('#project_name').set 'test project'
+    click_button 'Submit'
     expect(page).to have_content('test project')
   end
 
   scenario 'user can delete his projects' do
-    find('#remove_project').click
+    find('.glyphicon-trash').click
     expect(page).not_to have_content project.name
   end
 
-  scenario 'user can edit project name' do
-    find('.name_project').click
-    find('.editable-input').set 'new name'
-    within('.editable-buttons') do
-      find('.btn-primary').click
-    end
-    expect(page).to have_content 'new name'
-  end
-
-  scenario 'user leave the project name field empty' do
-    find('.name_project').click
-    find('.editable-input').set ''
-    within('.editable-buttons') do
-      find('.btn-primary').click
-    end
-    expect(page).to have_content 'Project has not been updated'
+  scenario 'user can edit his projects' do
+    find('.original-text').click
+    fill_in 'projname[name]', with:"hello world"
+    find('#project_change_name').native.send_keys(:return)
+    expect(page).to have_content('hello world')
   end
 
 end

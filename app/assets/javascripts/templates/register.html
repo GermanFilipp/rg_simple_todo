@@ -12,7 +12,7 @@
             Login in with facebook
         </a>
     </div>
-    <form class="email-signup ">
+    <form class="email-signup">
         <div class="u-form-group">
             <input type="email" name="user[email]" ng-model="user.email" placeholder="Email"/>
         </div>
@@ -20,7 +20,7 @@
             <input type="password" name="user[password]" ng-model="user.password" autocomplete="off" placeholder="Password"/>
         </div>
         <div class="u-form-group">
-            <input type="password" placeholder="Confirm Password"/>
+            <input type="password" name="user[confirm_password]" ng-model="user.confirm_password" autocomplete="off" placeholder="Confirm Password"/>
         </div>
         <div class="u-form-group">
             <button ng-click="register(user)">Sign Up</button>

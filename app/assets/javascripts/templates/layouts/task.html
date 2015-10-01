@@ -3,13 +3,13 @@
 </div>
 <div class='task-text'>
         <div>
-            <span ng-class="{'done': task.status == true}"  editable-text="task.title" on-change="updateTask(value, task.id)"></span>
+            <span ng-class="{'done': task.status == true}" id="change_task_name" name='task_name[name]'editable-text="task.title" on-change="updateTask(value, task.id)"></span>
             <span  class='pull-right glyphicon glyphicon-fire'ng-if="task.deadline"> {{task.deadline|date:"dd.MM.yy"}}</span>
         </div>
 
 
     <div class='comments' ng-controller='CommentsController' ng-show="showComments">
-        <form name="nameOfComment" ng-submit='createComment(task.id,nameOfComment.name.$valid)' novalidate>
+        <form name="nameOfComment" ng-submit='createComment(task.id,nameOfComment.name.$valid)' >
             <a class='glyphicon glyphicon-plus-sign comment-add' ng-click='createComment(task.id,nameOfComment.name.$valid)'></a>
             <input class='comment-input'  ng-model="commentName" name="name" placeholder="Enter comment name" required>
         </form>
@@ -20,7 +20,7 @@
 <div class='task-change'>
     <input class='glyphicon glyphicon-time button-ok' ng-change='setDeadline(task.id, task)' ng-model='task.deadline' type='button' ui-date-format='yy-mm-dd' ui-date='dateOptions'>
     <a class='glyphicon glyphicon-comment' ng-click='showComments = !showComments'></a>
-    <a class='glyphicon glyphicon-trash' ng-click="deleteTask(task.id, $index)"></a>
+    <a class='glyphicon glyphicon-trash' id='deleteTask'ng-click="deleteTask(task.id, $index)"></a>
 </div>
 
 

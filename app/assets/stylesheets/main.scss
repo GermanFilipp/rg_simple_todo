@@ -50,7 +50,7 @@ textarea {
 
 .todo-list-name {
   font-size: 16px;
-  color: #ffffff;
+  color: black;
   margin-left: 11px;
   float: left;
   max-width: 490px;
@@ -342,6 +342,9 @@ textarea {
 
 .hasDatepicker {
   display: none !important;
+}
+.ng-pristine{
+  background-color: inherit;
 }
 
 .ui-datepicker-trigger {
