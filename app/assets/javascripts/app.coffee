@@ -14,3 +14,5 @@ todo_list = angular.module('todo_list',[
 todo_list.run (editableOptions) ->
   editableOptions.theme = 'bs3'
 
+todo_list.config (AuthInterceptProvider) ->
+  AuthInterceptProvider.interceptAuth(true);

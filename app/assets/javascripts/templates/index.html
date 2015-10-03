@@ -1,27 +1,28 @@
 <a ng-controller="SignInController" style="cursor: pointer;" ng-click="logout()"><i class="glyphicon glyphicon-off"></i>
     Logout</a>
+<div ng-controller="SignInController">
+    <div class="container" ng-controller="ProjectsController">
 
-<div class="container" ng-controller="ProjectsController">
+        <div class="row" ng-show="showForm">
+            <form name="projectName" ng-submit="createProject(projectName.$valid)" >
+                <div class="formGroup" ng-class="{ 'has-error' : projectName.name.$invalid && !projectName.name.$pristine }">
+                    <input type="text" id="project_name" class='input-todo'style="background-color: white; border: 1px solid #315589;border-radius: 3px;  color:black;width: 180px;margin: 1px 233px 5px;" name="name" class="form-control"  placeholder="Enter project name" ng-model="nameProject" required>
+                </div>
 
-    <div class="row" ng-show="showForm">
-        <form name="projectName" ng-submit="createProject(projectName.$valid)" >
-            <div class="formGroup" ng-class="{ 'has-error' : projectName.name.$invalid && !projectName.name.$pristine }">
-                <input type="text" id="project_name" class='input-todo'style="background-color: white; border: 1px solid #315589;border-radius: 3px;  color:black;width: 180px;margin: 1px 233px 5px;" name="name" class="form-control"  placeholder="Enter project name" ng-model="nameProject" required>
-            </div>
+                <button type="submit" class="add-todo-list">Submit</button>
+            </form>
+        </div>
 
-            <button type="submit" class="add-todo-list">Submit</button>
-        </form>
-    </div>
-
-    <div  class='lists' ng-include='"layouts/project.html"' ng-repeat='project in projects'></div>
+        <div  class='lists' ng-include='"layouts/project.html"' ng-repeat='project in projects'></div>
 
 
-    <div class="row">
+        <div class="row">
             <button type="button" class="add-todo-list" ng-click='showForm = !showForm'>
                 <span class="glyphicon glyphicon-plus"></span>
                 <p>Add TODO List</p>
             </button>
+        </div>
     </div>
-
 </div>
+
 

@@ -5,15 +5,8 @@ controllers.controller 'ProjectsController', [
   '$http'
   'Projects'
   'Project'
-  'Auth'
-  '$location'
-  '$timeout'
-  'CheckLogin'
-  ($scope, $http, Projects,Project,Auth,$location,$timeout,CheckLogin) ->
 
-    $timeout(->
-      CheckLogin()
-    300)
+  ($scope, $http, Projects,Project) ->
 
     Projects.get (response) ->
       $scope.projects = response.projects
