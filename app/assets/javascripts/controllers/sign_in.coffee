@@ -8,7 +8,6 @@ controllers.controller 'SignInController', [
   ($scope, $http, Auth, $location) ->
 
     if (Auth._currentUser)
-
       $location.path('/')
 
     config = headers: 'X-HTTP-Method-Override': 'POST'
