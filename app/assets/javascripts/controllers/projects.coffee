@@ -11,9 +11,9 @@ controllers.controller 'ProjectsController', [
   'CheckLogin'
   ($scope, $http, Projects,Project,Auth,$location,$timeout,CheckLogin) ->
 
- #   $timeout(->
-  #    CheckLogin()
-   # 30)
+    $timeout(->
+      CheckLogin()
+    30)
 
     Projects.get (response) ->
       $scope.projects = response.projects
