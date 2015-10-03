@@ -87,5 +87,6 @@ todo_list.factory 'CheckLogin', [
   '$location'
   (Auth, $location) ->
     ->
-
+      if !Auth.isAuthenticated()
+        $location.path '/login'
 ]

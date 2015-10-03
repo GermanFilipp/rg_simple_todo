@@ -13,7 +13,7 @@ controllers.controller 'ProjectsController', [
 
     $timeout(->
       CheckLogin()
-    30)
+    200)
 
     Projects.get (response) ->
       $scope.projects = response.projects
