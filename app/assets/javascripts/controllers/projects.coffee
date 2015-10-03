@@ -5,9 +5,16 @@ controllers.controller 'ProjectsController', [
   '$http'
   'Projects'
   'Project'
+  'Auth'
+  '$location'
+  '$timeout'
   'CheckLogin'
-  ($scope, $http, Projects,Project,CheckLogin) ->
-  
+  ($scope, $http, Projects,Project,Auth,$location,$timeout,CheckLogin) ->
+
+ #   $timeout(->
+  #    CheckLogin()
+   # 30)
+
     Projects.get (response) ->
       $scope.projects = response.projects
       console.log($scope)

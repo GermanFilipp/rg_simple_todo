@@ -2,7 +2,10 @@ todo_list = angular.module('todo_list')
 
 todo_list.factory 'Projects', [
   '$resource'
-  ($resource) ->
+  'Auth'
+  '$location'
+  ($resource,Auth, $location) ->
+    ->
     $resource '/projects', {},
       'get': method: 'GET'
       'create':
@@ -84,6 +87,5 @@ todo_list.factory 'CheckLogin', [
   '$location'
   (Auth, $location) ->
     ->
-      if !Auth.isAuthenticated()
-        $location.path '/login'
+
 ]

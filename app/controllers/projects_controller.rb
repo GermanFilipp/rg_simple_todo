@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
 
+
   def index
     render json: @projects
   end
@@ -31,5 +32,6 @@ class ProjectsController < ApplicationController
   def project_params
     params.permit(:name)
   end
+
 
 end

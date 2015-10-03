@@ -6,10 +6,16 @@ controllers.controller 'SignInController', [
   'Auth'
   '$location'
   ($scope, $http, Auth, $location) ->
+
+    if (Auth._currentUser)
+      console.log('Hello niga')
+      $location.path('/')
+
     config = headers: 'X-HTTP-Method-Override': 'POST'
     Auth.currentUser().then ((user) ->
       $location.path '/'
     ), (error) ->
+      $('.alert_error').html '<div class="alert alert-danger" role="alert">' + error.data.error + '</div>'
 
 
     $scope.login = (data) ->
@@ -30,4 +36,5 @@ controllers.controller 'SignInController', [
       $location.path '/login'
 
     $scope.$on 'devise:new-session', (event, currentUser) ->
+
 ]

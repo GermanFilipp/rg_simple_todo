@@ -3,6 +3,10 @@ Rails.application.routes.draw do
                                    omniauth_callbacks: 'omniauth_callbacks',
                                    registrations: "users/registrations"}
 
+
+
+
+
   root 'todo#index'
 
   resources :projects, except: [:new, :show]
