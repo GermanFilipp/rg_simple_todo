@@ -5,7 +5,9 @@
             <span class='glyphicon glyphicon-calendar'></span>
         </div>
         <div class='todo-list-name'>
-            <span editable-text="project.name" id="project_change_name"  on-change="updateProject(value, project.id)"></span>
+            <span id="change_task_name" name='task_name[name]' editable-text="project.name" onbeforesave="updateProject($data, project.id)">
+               {{ project.name || 'empty'}}
+            </span>
         </div>
 
         <div class='icon-right' >

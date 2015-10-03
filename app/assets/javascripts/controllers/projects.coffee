@@ -6,9 +6,8 @@ controllers.controller 'ProjectsController', [
   'Projects'
   'Project'
   'CheckLogin'
-  '$timeout'
-  ($scope, $http, Projects,Project,CheckLogin,$timeout) ->
-
+  ($scope, $http, Projects,Project,CheckLogin) ->
+  
     Projects.get (response) ->
       $scope.projects = response.projects
       console.log($scope)
@@ -27,7 +26,7 @@ controllers.controller 'ProjectsController', [
 
     $scope.updateProject = (value, id) ->
       Project.update {id: id, name: value }, ->
-      return value
+      return true
 
     $scope.showForm = false
 ]

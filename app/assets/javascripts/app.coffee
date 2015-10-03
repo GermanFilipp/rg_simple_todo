@@ -2,14 +2,17 @@ todo_list = angular.module('todo_list',[
   'ngRoute',
   'ngResource',
   'templates',
-  'gg.editableText',
   'ui.sortable',
   'Devise',
   'ngFileUpload',
   'ngDialog',
   'ui.bootstrap',
-  'ui.date'
+  'ui.date',
+  'xeditable'
 ])
+
+todo_list.run (editableOptions) ->
+  editableOptions.theme = 'bs3'
 
 todo_list.config [
   '$routeProvider'

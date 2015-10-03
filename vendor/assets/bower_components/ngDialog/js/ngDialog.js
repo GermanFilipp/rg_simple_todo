@@ -14,7 +14,7 @@
         }
     } else if (typeof define === 'function' && define.amd) {
         // AMD
-        define(['ngDialog'], function (angular) {
+        define(['ng-dialog'], function () {
           factory(root.angular);
         });
     } else {
@@ -102,8 +102,8 @@
                         $elements.body.off('keydown', privateMethods.onTrapFocusKeydown);
                     },
 
-                    deactivateAll: function () {
-                        angular.forEach(function(el) {
+                    deactivateAll: function (els) {
+                        angular.forEach(els,function(el) {
                             var $dialog = angular.element(el);
                             privateMethods.deactivate($dialog);
                         });
@@ -423,7 +423,7 @@
                     detectUIRouter: function() {
                         //Detect if ui-router module is installed if not return false
                         try {
-                            angular.module("ui.router");
+                            angular.module('ui.router');
                             return true;
                         } catch(err) {
                             return false;
@@ -730,7 +730,7 @@
                                 var topDialogId = openIdStack[openIdStack.length - 1];
                                 $dialog = $el(document.getElementById(topDialogId));
                                 if ($dialog.data('$ngDialogOptions').closeByEscape) {
-                                    privateMethods.closeDialog($dialog, value);
+                                    privateMethods.closeDialog($dialog, '$escape');
                                 }
                             } else {
                                 publicMethods.closeAll(value);

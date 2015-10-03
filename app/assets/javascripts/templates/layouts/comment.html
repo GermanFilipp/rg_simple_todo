@@ -1,6 +1,10 @@
 <div>
     <div ng-controller="UploadController">
-    <span editable-text="comment.text" id="change_comment_name" name="comment_name[name]" on-change="updateComment(value, comment.id)"></span>
+
+        <span id="change_task_name" name='task_name[name]' editable-text="comment.text" onbeforesave="updateComment($data,  comment.id)">
+                <span >{{ comment.text || 'empty'}}</span>
+            </span>
+
 
     <a class='glyphicon glyphicon-trash delete-comment' ng-click="deleteComment(comment.id, $index)"></a>
         <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB">

@@ -22,5 +22,5 @@ controllers.controller 'CommentsController', [
 
     $scope.updateComment = (value, id) ->
       Comment.update {id: id, text: value }, ->
-      return value
+      return true
 ]
