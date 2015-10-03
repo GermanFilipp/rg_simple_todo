@@ -8,9 +8,6 @@ controllers.controller 'ProjectsController', [
   'CheckLogin'
   '$timeout'
   ($scope, $http, Projects,Project,CheckLogin,$timeout) ->
-    $timeout(->
-      CheckLogin()
-      200)
 
     Projects.get (response) ->
       $scope.projects = response.projects
