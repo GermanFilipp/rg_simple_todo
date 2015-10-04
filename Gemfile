@@ -28,7 +28,7 @@ gem 'poltergeist'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-
+  gem 'jasmine-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'shoulda-matchers'

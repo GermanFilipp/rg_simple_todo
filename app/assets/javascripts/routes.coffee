@@ -16,20 +16,3 @@ angular.module('todo_list').config ($routeProvider) ->
     redirectTo: '/'
   )
 
-
-###
-
-  todo_list.config [
-    '$routeProvider'
-    ($routeProvider) ->
-      $routeProvider.when('/',
-        controller: 'ProjectsController'
-        templateUrl: 'index.html')
-      .when('/login',
-        controller: 'SignInController'
-        templateUrl: 'login.html')
-      .when('/register',
-        controller: 'RegisterController'
-        templateUrl: 'register.html')
-      .otherwise redirectTo: '/'
-  ]###

@@ -30,6 +30,8 @@
     "ng-file-upload": null,
     "ngDialog": null,
     "angular-xeditable": null,
-    "angular-ui-date": null
+    "angular-ui-date": null,
+    "sinon": null,
+    "jasmine-sinon": null
   }
 }

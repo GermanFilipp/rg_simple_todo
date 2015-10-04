@@ -23,7 +23,7 @@ controllers.controller 'TasksController', [
 
     $scope.updateTask = (value, id) ->
       Task.update {id: id, title: value }, ->
-      return true
+      return
 
     $scope.updateStatus = (id, status, key) ->
       Task.update {id: id, status: !status}, ->
