@@ -38,5 +38,7 @@ controllers.controller 'SignInController', [
 
 
     $scope.$on 'devise:unauthorized', (event, xhr, deferred) ->
-      $location.path('/login')
+       if $location.path() == '/'
+         $location.path '/login'
+
 ]
