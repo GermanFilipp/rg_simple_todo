@@ -5,12 +5,14 @@
             <span class='glyphicon glyphicon-calendar'></span>
         </div>
         <div class='todo-list-name'>
-            <span id="change_task_name" name='task_name[name]' editable-text="project.name" onbeforesave="updateProject($data, project.id)">
+            <span id="change_task_name" name='task_name[name]' editable-text="project.name" e-form="textBtnForm" e-style='background-color:#426eae;color:white;' onbeforesave="updateProject($data, project.id)">
                {{ project.name || 'empty'}}
             </span>
         </div>
 
         <div class='icon-right' >
+            <a class=" glyphicon glyphicon-pencil" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"></a>
+            <div class="horisont">|</div>
             <a class='glyphicon glyphicon-trash' id="remove_project" ng-click='deleteProject(project.id, $index)'></a>
         </div>
     </div>

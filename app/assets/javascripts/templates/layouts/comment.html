@@ -1,15 +1,20 @@
 <div>
     <div ng-controller="UploadController">
 
-        <span id="change_task_name" name='task_name[name]' editable-text="comment.text" onbeforesave="updateComment($data,  comment.id)">
+        <span id="change_task_name" name='task_name[name]' editable-text="comment.text" e-form="commentBtnForm" onbeforesave="updateComment($data,  comment.id)">
                 <span >{{ comment.text || 'empty'}}</span>
-            </span>
+        </span>
 
-
+<div class="pull-right">
+    <a class="glyphicon glyphicon-pencil" style="color: inherit;font-size: inherit"ng-click="commentBtnForm.$show()" ng-hide="commentBtnForm.$visible"></a>
     <a class='glyphicon glyphicon-trash delete-comment' ng-click="deleteComment(comment.id, $index)"></a>
-        <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB">
+    <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB"></a>
 
-        </a>
+</div>
+
+
+
+
         <ul>
             <li ng-repeat="f in files">{{f.name}} {{f.$error}} {{f.$errorParam}}
                       <span class="progress" ng-show="f.progress >= 0">
