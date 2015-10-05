@@ -24,8 +24,7 @@ class CommentsController < ApplicationController
 
   def file_attach
     @comment.file_attachments.create!(file: params[:file])
-   # @comment.file_attachments.create!(data: params[:file])
-    render json: { nothing: true }
+    render json: @comment.file_attachments
   end
 
   private

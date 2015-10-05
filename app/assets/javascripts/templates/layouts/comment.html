@@ -5,12 +5,11 @@
                 <span >{{ comment.text || 'empty'}}</span>
         </span>
 
-<div class="pull-right">
-    <a class="glyphicon glyphicon-pencil" style="color: inherit;font-size: inherit"ng-click="commentBtnForm.$show()" ng-hide="commentBtnForm.$visible"></a>
-    <a class='glyphicon glyphicon-trash delete-comment' ng-click="deleteComment(comment.id, $index)"></a>
-    <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ngf-max-height="1000" ngf-max-size="1MB"></a>
-
-</div>
+        <div class="pull-right">
+            <a class="glyphicon glyphicon-pencil" style="color: inherit;font-size: inherit"ng-click="commentBtnForm.$show()" ng-hide="commentBtnForm.$visible"></a>
+            <a class='glyphicon glyphicon-trash delete-comment' ng-click="deleteComment(comment.id, $index)"></a>
+            <a class="glyphicon glyphicon-save delete-comment" ngf-select="uploadFiles($files, comment.id)" multiple ></a>
+        </div>
 
 
 

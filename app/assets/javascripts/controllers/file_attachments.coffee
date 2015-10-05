@@ -14,8 +14,9 @@ controllers.controller 'UploadController', [
             url: '/comments/' + comment_id + '/file_attach'
             file: file)
         file.upload.then ((response) ->
-          $timeout ->
-            file.result = response.data
+          file.result = response.data
+          aray = response.data.comments
+          $scope.comment.file_attachments.push(aray[aray.length - 1 ])
         ), (response) ->
           if response.status > 0
             $scope.errorMsg = response.status + ': ' + response.data

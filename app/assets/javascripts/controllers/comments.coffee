@@ -16,6 +16,7 @@ controllers.controller 'CommentsController', [
           $scope.commentName = ''
           $scope.task.comments.push res.comment
 
+
     $scope.deleteComment = (id,key) ->
       Comment.destroy {id:id}, (res) ->
         $scope.task.comments.splice key, 1
