@@ -1,5 +1,6 @@
-<a ng-controller="SignInController" style="cursor: pointer;" ng-click="logout()"><i class="glyphicon glyphicon-off"></i>
-    Logout</a>
+<div ng-controller="SignInController" class="sign-out" style="cursor: pointer;" ng-click="logout()">
+    <button class='btn btn-primary' ng-click='logout()'> <i class="glyphicon glyphicon-off"></i> Sign out</button>
+</div>
 <div ng-controller="SignInController">
     <div class="container" ng-controller="ProjectsController">
 
