@@ -94,6 +94,7 @@ textarea {
   padding-right: 5px;
 }
 
+
 .todo-list-sign a {
   margin-right: 5px;
 }
@@ -447,6 +448,13 @@ footer {
     right: 0;
     top: 0;
 }
+
+
+.alert {
+  position: absolute;
+
+
+}
 .sign-out button {
   border-radius: 0px;
   background: #426eae;
@@ -456,4 +464,21 @@ footer {
   background:     -ms-linear-gradient(top, #5587bf, #3863a0);
   background:      -o-linear-gradient(top, #5587bf, #3863a0);
   box-shadow: 0 1px 0 #91aed5 inset;
+}
+
+ul
+{
+  list-style-type: none;
+}
+
+.my-animation.ng-enter {
+  -webkit-animation: flipInY 1s;
+  -moz-animation: flipInY 1s;
+  animation: flipInY 1s;
+}
+
+.my-animation.ng-leave {
+  -webkit-animation: flipOutY 1s;
+  -moz-animation: flipOutY 1s;
+  animation: flipOutY 1s;
 }

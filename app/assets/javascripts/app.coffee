@@ -8,7 +8,11 @@ todo_list = angular.module('todo_list',[
   'ngDialog',
   'ui.bootstrap',
   'ui.date',
-  'xeditable'
+  'xeditable',
+  'ngToast',
+  'ngAnimate',
+  'ngSanitize'
+
 ])
 
 todo_list.run (editableOptions) ->
@@ -16,3 +20,10 @@ todo_list.run (editableOptions) ->
 
 todo_list.config (AuthInterceptProvider) ->
   AuthInterceptProvider.interceptAuth(true);
+
+todo_list.config [
+  'ngToastProvider'
+  (ngToastProvider) ->
+    ngToastProvider.configure additionalClasses: 'my-animation'
+    return
+]

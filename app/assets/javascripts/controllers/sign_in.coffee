@@ -5,7 +5,8 @@ controllers.controller 'SignInController', [
   '$http'
   'Auth'
   '$location'
-  ($scope, $http, Auth, $location) ->
+  'ngToastFactory'
+  ($scope, $http, Auth, $location,ngToastFactory) ->
 
     if (Auth._currentUser)
       $location.path('/')
@@ -14,13 +15,14 @@ controllers.controller 'SignInController', [
     Auth.currentUser().then ((user) ->
       $location.path '/'
       ), (error) ->
-      $('.alert_error').html '<div class="alert alert-danger" role="alert">' + error.data.error + '</div>'
+        ngToastFactory.alertToast(error.data.error)
 
 
     $scope.login = (data) ->
       Auth.login(data, config).then ((user) ->
+        ngToastFactory.successToast('Success login')
       ), (error) ->
-        $('.alert_error').html '<div class="alert alert-danger" role="alert">' + error.data.error + '</div>'
+        ngToastFactory.alertToast('kk')
 
     $scope.logout = ->
       config = headers: 'X-HTTP-Method-Override': 'DELETE'
@@ -28,15 +30,17 @@ controllers.controller 'SignInController', [
       ), (error) ->
 
     $scope.$on 'devise:login', (event, currentUser) ->
+      ngToastFactory.successToast("Authorized")
       $location.path '/'
 
     $scope.$on 'devise:logout', (event, oldCurrentUser) ->
+      ngToastFactory.successToast("Good bye")
       $location.path '/login'
 
     $scope.$on 'devise:new-session', (event, currentUser) ->
 
     $scope.$on 'devise:unauthorized', (event, xhr, deferred) ->
-       if $location.path() == '/'
-        $location.path '/login'
+      if $location.path() == '/'
+         $location.path '/login'
 
 ]

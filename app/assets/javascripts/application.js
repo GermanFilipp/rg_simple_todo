@@ -20,6 +20,9 @@
 //= require angular-ui-sortable
 //= require angular-devise/lib/devise
 //= require ng-file-upload
+//= require angular-sanitize
+//= require angular-animate
+//= require ngtoast
 //= require ng-file-upload-shim
 //= require ngDialog
 //= require bootstrap-sprockets

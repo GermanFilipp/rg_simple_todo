@@ -3,4 +3,5 @@ class Comment < ActiveRecord::Base
   has_many :file_attachments
 
   validates :text, presence: true
+
 end

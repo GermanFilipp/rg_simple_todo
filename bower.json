@@ -32,6 +32,9 @@
     "angular-xeditable": null,
     "angular-ui-date": null,
     "sinon": null,
-    "jasmine-sinon": null
+    "jasmine-sinon": null,
+    "ngtoast": null,
+    "angular-animate": null,
+    "angular-sanitize": null
   }
 }

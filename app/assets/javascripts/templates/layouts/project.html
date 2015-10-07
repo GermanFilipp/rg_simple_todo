@@ -23,7 +23,7 @@
         <div class='icon-left icon-plus'>
             <span class='glyphicon glyphicon-plus'></span>
         </div>
-        <form name="nameOfTask" ng-submit="createTask(project.id,nameOfTask.$valid)" >
+        <form name="nameOfTask" ng-submit="createTask(project.id,nameOfTask.$valid)"  novalidate>
             <div class='formGroup'>
                 <div class='input-group'>
                     <input class='form-control' name="name" ng-model="taskName" placeholder="Enter task name" required>

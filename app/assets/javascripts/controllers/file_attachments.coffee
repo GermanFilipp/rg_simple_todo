@@ -4,7 +4,8 @@ controllers.controller 'UploadController', [
   '$scope'
   'Upload'
   '$timeout'
-  ($scope,Upload,$timeout) ->
+  'ngToastFactory'
+  ($scope,Upload,$timeout,ngToastFactory) ->
 
     $scope.uploadFiles = (files, comment_id) ->
       $scope.files = files
@@ -17,6 +18,7 @@ controllers.controller 'UploadController', [
           file.result = response.data
           aray = response.data.comments
           $scope.comment.file_attachments.push(aray[aray.length - 1 ])
+          ngToastFactory.successToast('File successfully uploaded')
         ), (response) ->
           if response.status > 0
             $scope.errorMsg = response.status + ': ' + response.data

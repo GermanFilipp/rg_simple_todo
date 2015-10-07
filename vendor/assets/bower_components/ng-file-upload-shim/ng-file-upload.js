@@ -2,7 +2,7 @@
  * AngularJS file upload directives and services. Supoorts: file upload/drop/paste, resume, cancel/abort,
  * progress, resize, thumbnail, preview, validation and CORS
  * @author  Danial  <danial.farid@gmail.com>
- * @version 9.0.4
+ * @version 9.0.7
  */
 
 if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
@@ -23,7 +23,7 @@ if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
 
 var ngFileUpload = angular.module('ngFileUpload', []);
 
-ngFileUpload.version = '9.0.4';
+ngFileUpload.version = '9.0.7';
 
 ngFileUpload.service('UploadBase', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
   var upload = this;
@@ -420,29 +420,28 @@ ngFileUpload.service('Upload', ['$parse', '$timeout', '$compile', 'UploadResize'
   function handleKeep(files, prevFiles, attr, scope) {
     var dupFiles = [];
     var keep = upload.attrGetter('ngfKeep', attr, scope);
-    if (keep === true) {
-      if (!files || !files.length) return;
-
+    if (keep) {
       var hasNew = false;
 
-      if (upload.attrGetter('ngfKeepDistinct', attr, scope) === true) {
+      if (keep === 'distinct' || upload.attrGetter('ngfKeepDistinct', attr, scope) === true) {
         var len = prevFiles.length;
-        for (var i = 0; i < files.length; i++) {
-          for (var j = 0; j < len; j++) {
-            if (files[i].name === prevFiles[j].name) {
-              dupFiles.push(files[i]);
-              break;
+        if (files) {
+          for (var i = 0; i < files.length; i++) {
+            for (var j = 0; j < len; j++) {
+              if (files[i].name === prevFiles[j].name) {
+                dupFiles.push(files[i]);
+                break;
+              }
+            }
+            if (j === len) {
+              prevFiles.push(files[i]);
+              hasNew = true;
             }
           }
-          if (j === len) {
-            prevFiles.push(files[i]);
-            hasNew = true;
-          }
         }
-        if (!hasNew) return;
         files = prevFiles;
       } else {
-        files = prevFiles.concat(files);
+        files = prevFiles.concat(files || []);
       }
     }
     return {files: files, dupFiles: dupFiles, keep: keep};
@@ -495,7 +494,7 @@ ngFileUpload.service('Upload', ['$parse', '$timeout', '$compile', 'UploadResize'
 
     attr.$$ngfPrevFiles = files;
 
-    if (upload.validate(files, ngModel, attr, scope, upload.attrGetter('ngfValidateLater', attr), function () {
+    if (upload.validate(newFiles, ngModel, attr, scope, upload.attrGetter('ngfValidateLater', attr), function () {
         if (noDelay) {
           update(files, [], newFiles, dupFiles, isSingleModel);
         } else {
@@ -557,7 +556,6 @@ ngFileUpload.directive('ngfSelect', ['$parse', '$timeout', '$compile', 'Upload',
     /** @namespace attr.ngfCapture */
     /** @namespace attr.ngfValidate */
     /** @namespace attr.ngfKeep */
-    /** @namespace attr.ngfKeepDistinct */
     var attrGetter = function (name, scope) {
       return upload.attrGetter(name, attr, scope);
     };
@@ -1530,6 +1528,7 @@ ngFileUpload.service('UploadResize', ['UploadValidate', '$q', '$timeout', functi
         calculateDragOverClass(scope, attr, evt, function (clazz) {
           actualDragOverClass = clazz;
           elem.addClass(actualDragOverClass);
+          attrGetter('ngfDrag', scope, {$isDragging: true, $class: actualDragOverClass, $event: evt});
         });
       }
     }, false);
@@ -1538,12 +1537,15 @@ ngFileUpload.service('UploadResize', ['UploadValidate', '$q', '$timeout', functi
       evt.preventDefault();
       if (stopPropagation(scope)) evt.stopPropagation();
     }, false);
-    elem[0].addEventListener('dragleave', function () {
+    elem[0].addEventListener('dragleave', function (evt) {
       if (isDisabled()) return;
+      evt.preventDefault();
+      if (stopPropagation(scope)) evt.stopPropagation();
       leaveTimeout = $timeout(function () {
         if (actualDragOverClass) elem.removeClass(actualDragOverClass);
         actualDragOverClass = null;
-      }, dragOverDelay || 1);
+        attrGetter('ngfDrag', scope, {$isDragging: false, $event: evt});
+      }, dragOverDelay || 100);
     }, false);
     elem[0].addEventListener('drop', function (evt) {
       if (isDisabled() || !upload.shouldUpdateOn('drop', attr, scope)) return;
@@ -1551,7 +1553,10 @@ ngFileUpload.service('UploadResize', ['UploadValidate', '$q', '$timeout', functi
       if (stopPropagation(scope)) evt.stopPropagation();
       if (actualDragOverClass) elem.removeClass(actualDragOverClass);
       actualDragOverClass = null;
-      var html = (evt.dataTransfer && evt.dataTransfer.getData && evt.dataTransfer.getData('text/html'));
+      var html;
+      try {
+        html = (evt.dataTransfer && evt.dataTransfer.getData && evt.dataTransfer.getData('text/html'));
+      } catch (e) {/* Fix IE11 that throw error calling getData */}
       if (html) {
         var url;
         html.replace(/<img .*src *=\"([^\"]*)\"/, function (m, src) {

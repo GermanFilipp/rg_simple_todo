@@ -1,11 +1,17 @@
+<div class="col-xs-2 col-xs-offset-10"><toast></toast></div>
+
 <div ng-controller="SignInController" class="sign-out" style="cursor: pointer;" ng-click="logout()">
     <button class='btn btn-primary' ng-click='logout()'> <i class="glyphicon glyphicon-off"></i> Sign out</button>
 </div>
-<div ng-controller="SignInController">
-    <div class="container" ng-controller="ProjectsController">
 
+
+
+<div ng-controller="SignInController">
+
+
+    <div class="container" ng-controller="ProjectsController">
         <div class="row" ng-show="showForm">
-            <form name="projectName" ng-submit="createProject(projectName.$valid)" >
+            <form name="projectName" ng-submit="createProject(projectName.$valid)" novalidate>
                 <div class="formGroup" ng-class="{ 'has-error' : projectName.name.$invalid && !projectName.name.$pristine }">
                     <input type="text" id="project_name" class='input-todo'style="background-color: white; border: 1px solid #315589;border-radius: 3px;  color:black;width: 180px;margin: 1px 233px 5px;" name="name" class="form-control"  placeholder="Enter project name" ng-model="nameProject" required>
                 </div>
@@ -24,6 +30,9 @@
             </button>
         </div>
     </div>
+
+
+
 </div>
 
 
